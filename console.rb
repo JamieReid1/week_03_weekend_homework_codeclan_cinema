@@ -22,7 +22,5 @@ Customer.return_all()
 
 
 
-
-
 binding.pry
-nil 
+nil
