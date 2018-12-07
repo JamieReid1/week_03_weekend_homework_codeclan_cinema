@@ -38,5 +38,12 @@ class Film
     return Film.new(film)
   end
 
+  def self.return_by_title(title)
+    sql = "SELECT * FROM films WHERE title = $1"
+    values = [title]
+    film = SqlRunner.run(sql, values).first
+    return Film.new(film)
+  end
+
 
 end

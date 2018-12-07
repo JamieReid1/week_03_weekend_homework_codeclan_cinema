@@ -38,5 +38,12 @@ class Customer
     return Customer.new(customer)
   end
 
+  def self.return_by_name(name)
+    sql = "SELECT * FROM customers WHERE name = $1"
+    values = [name]
+    customer = SqlRunner.run(sql, values).first
+    return Customer.new(customer)
+  end
+
 
 end
