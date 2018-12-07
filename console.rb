@@ -44,6 +44,16 @@ ticket5.save()
 ticket6 = Ticket.new({ 'customer_id' => customer6.id, 'film_id' => film2.id })
 ticket6.save()
 
+customer6.name = 'Mrs Potato Head'
+customer5.funds = 90
+customer6.update()
+customer5.update()
 
-binding.pry
-nil
+film4.title = 'Peppa Pig'
+film3.price = 7
+film4.update()
+film3.update()
+
+
+# binding.pry
+# nil
