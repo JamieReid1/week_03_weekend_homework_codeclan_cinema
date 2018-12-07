@@ -6,6 +6,9 @@ require_relative('models/film')
 require_relative('models/ticket')
 
 
+Customer.delete_all()
+Film.delete_all()
+
 customer1 = Customer.new({ 'name' => 'Woody', 'funds' => 100 })
 customer1.save()
 

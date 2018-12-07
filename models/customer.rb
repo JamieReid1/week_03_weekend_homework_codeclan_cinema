@@ -14,6 +14,11 @@ class Customer
   end
 
 
+  def self.delete_all()
+    sql = "DELETE FROM customers"
+    SqlRunner.run(sql)
+  end
+
   def save()
     sql = "INSERT INTO customers ( name, funds ) VALUES ( $1, $2 ) RETURNING *"
     values = [@name, @funds]

@@ -14,6 +14,11 @@ class Film
   end
 
 
+  def self.delete_all()
+    sql = "DELETE FROM films"
+    SqlRunner.run(sql)
+  end
+
   def save()
     sql = "INSERT INTO films ( title, price ) VALUES ( $1, $2 ) RETURNING *"
     values = [@title, @price]
