@@ -13,7 +13,7 @@ class SqlRunner
     ensure
       db.close() if db != nil
     end
-    return SqlRunner.run(sql, values)
+    return result
   end
 
 
