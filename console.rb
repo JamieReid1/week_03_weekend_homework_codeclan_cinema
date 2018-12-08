@@ -65,8 +65,9 @@ film3.update()
 # ticket5.film_id = film3.id
 # ticket5.update()
 
+customer2.ticket_count()
 
 
 
-# binding.pry
-# nil
+binding.pry
+nil

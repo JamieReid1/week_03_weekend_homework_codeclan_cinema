@@ -69,5 +69,13 @@ class Customer
     ticket.save()
   end
 
+  def ticket_count()
+    sql = "SELECT * FROM tickets WHERE customer_id = $1"
+    values = [@id]
+    tickets = SqlRunner.run(sql, values)
+    ticket_arr = tickets.map { |ticket| Ticket.new(ticket) }
+    return ticket_arr.length
+  end
+
 
 end
