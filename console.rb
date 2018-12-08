@@ -17,7 +17,7 @@ customer3 = Customer.new({ 'name' => 'Rex', 'funds' => 90 })
 customer3.save()
 customer4 = Customer.new({ 'name' => 'Hamm', 'funds' => 90 })
 customer4.save()
-customer5 = Customer.new({ 'name' => 'Little Bo Peep', 'funds' => 100 })
+customer5 = Customer.new({ 'name' => 'Little Bo Peep', 'funds' => 90 })
 customer5.save()
 customer6 = Customer.new({ 'name' => 'Mr Potato Head', 'funds' => 90 })
 customer6.save()
@@ -45,7 +45,7 @@ ticket6 = Ticket.new({ 'customer_id' => customer6.id, 'film_id' => film2.id })
 ticket6.save()
 
 customer6.name = 'Mrs Potato Head'
-customer5.funds = 90
+customer5.funds = 100
 customer6.update()
 customer5.update()
 
@@ -54,6 +54,9 @@ film3.price = 7
 film4.update()
 film3.update()
 
+ticket5.film_id = film3.id
+ticket5.update()
 
-# binding.pry
-# nil
+
+binding.pry
+nil
