@@ -60,5 +60,14 @@ class Customer
     return films.map { |film| Film.new(film) }
   end
 
+  def buy_ticket(film)
+    sql = "UPDATE customers SET funds = $1 WHERE id = $2"
+    ticket = Ticket.new({ 'customer_id' => @id, 'film_id' => film.id })
+    new_funds = @funds -= film.price
+    values = [new_funds, @id]
+    SqlRunner.run(sql ,values)
+    ticket.save()
+  end
+
 
 end
