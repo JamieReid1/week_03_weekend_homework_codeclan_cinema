@@ -66,6 +66,7 @@ film3.update()
 # ticket5.update()
 
 customer2.ticket_count()
+film1.customer_count()
 
 
 
