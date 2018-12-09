@@ -55,19 +55,22 @@ class Customer
 
   def films()
     sql = "SELECT films.* FROM
-           films INNER JOIN tickets
-           ON films.id = tickets.film_id WHERE customer_id = $1"
+           films INNER JOIN screenings
+           ON films.id = screenings.film_id INNER JOIN tickets
+           ON screenings.id = tickets.screening_id WHERE customer_id = $1"
     values = [@id]
     films = SqlRunner.run(sql, values)
-    return films.map { |film| Film.new(film) }
+    film = films.map { |film| Film.new(film) }
+    return film.uniq { |i| i.id }
   end
 
-  def buy_ticket(film)
-    sql = "UPDATE customers SET funds = $1 WHERE id = $2"
-    ticket = Ticket.new({ 'customer_id' => @id, 'film_id' => film.id })
-    new_funds = @funds -= film.price
-    values = [new_funds, @id]
-    SqlRunner.run(sql ,values)
+  def buy_ticket(screening)
+    #sql = "UPDATE customers SET funds = $1 WHERE id = $2"
+    ticket = Ticket.new({ 'customer_id' => @id, 'screening_id' => screening.id })
+    #binding.pry
+    #new_funds = @funds -= film.price
+    #values = [new_funds, @id]
+    #SqlRunner.run(sql ,values)
     ticket.save()
   end
 

@@ -16,4 +16,26 @@ class Screening
   end
 
 
+  def self.delete_all()
+    sql = "DELETE FROM screenings"
+    SqlRunner.run(sql)
+  end
+
+  def save()
+    sql = "INSERT INTO screenings ( film_id, show_time ) VALUES ( $1, $2 ) RETURNING *"
+    values = [@film_id, @show_time]
+    @id = SqlRunner.run(sql, values)[0]['id'].to_i
+  end
+
+  def film()
+    sql = "SELECT films.* FROM
+           films INNER JOIN screenings
+           ON films.id = screenings.film_id WHERE film_id = $1"
+    values = [@film_id]
+    films = SqlRunner.run(sql, values)
+    film = films.map { |film| Film.new(film) }
+    return film[0]
+  end
+
+
 end
