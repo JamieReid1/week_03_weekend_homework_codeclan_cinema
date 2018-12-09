@@ -85,6 +85,8 @@ film1.customer_count()
 
 screening1.film()
 film1.customers()
+film1.screenings()
+film1.show_times()
 
 
 binding.pry

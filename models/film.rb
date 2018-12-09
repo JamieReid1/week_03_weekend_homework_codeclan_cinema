@@ -69,5 +69,24 @@ class Film
     return customers.length
   end
 
+  def screenings()
+    sql = "SELECT screenings.* FROM
+           screenings INNER JOIN films
+           ON screenings.film_id = films.id WHERE film_id =$1"
+    values = [@id]
+    screenings = SqlRunner.run(sql, values)
+    return screenings.map { |screening| Screening.new(screening) }
+  end
+
+  def show_times()
+    sql = "SELECT screenings.* FROM
+           screenings INNER JOIN films
+           ON screenings.film_id = films.id WHERE film_id =$1"
+    values = [@id]
+    screenings = SqlRunner.run(sql, values)
+    screening = screenings.map { |screening| Screening.new(screening) }
+    return screening.map { |i| i.show_time }
+  end
+
 
 end
