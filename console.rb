@@ -4,6 +4,7 @@ require('pry')
 require_relative('models/customer')
 require_relative('models/film')
 require_relative('models/ticket')
+require_relative('models/screening')
 
 
 Customer.delete_all()
@@ -44,6 +45,16 @@ screening4.save
 screening5 = Screening.new({ 'film_id' => film2.id, 'show_time' => '19:00' })
 screening5.save
 
+customer6.name = 'Mrs Potato Head'
+customer5.funds = 100
+customer6.update()
+customer5.update()
+
+film4.title = 'Peppa Pig'
+film3.price = 7
+film4.update()
+film3.update()
+
 
 customer1.buy_ticket(screening2)
 customer1.buy_ticket(screening3)
@@ -53,6 +64,7 @@ customer3.buy_ticket(screening4)
 customer4.buy_ticket(screening1)
 customer5.buy_ticket(screening3)
 customer6.buy_ticket(screening5)
+customer6.buy_ticket(screening2)
 
 # ticket1 = Ticket.new({ 'customer_id' => customer1.id, 'screening_id' => screening1.id })
 # ticket1.save()
@@ -67,27 +79,19 @@ customer6.buy_ticket(screening5)
 # ticket6 = Ticket.new({ 'customer_id' => customer6.id, 'screening_id' => screening2.id })
 # ticket6.save()
 
-customer6.name = 'Mrs Potato Head'
-customer5.funds = 100
-customer6.update()
-customer5.update()
-
-film4.title = 'Peppa Pig'
-film3.price = 7
-film4.update()
-film3.update()
-
 # ticket5.film_id = film3.id
 # ticket5.update()
 
-customer2.ticket_count()
-film1.customer_count()
+# customer2.ticket_count()
+# customer2.films()
+# film1.customer_count()
 
-screening1.film()
-film1.customers()
-film1.screenings()
-film1.show_times()
+# screening1.film()
+# screening1.customers()
+# film1.customers()
+# film1.screenings()
+# film1.show_times()
 
 
-binding.pry
-nil
+# binding.pry
+# nil

@@ -2,6 +2,7 @@
 require_relative('../db/sql_runner')
 require_relative('film')
 require_relative('ticket')
+require_relative('screening')
 
 
 class Customer
@@ -65,13 +66,17 @@ class Customer
   end
 
   def buy_ticket(screening)
-    #sql = "UPDATE customers SET funds = $1 WHERE id = $2"
     ticket = Ticket.new({ 'customer_id' => @id, 'screening_id' => screening.id })
-    #binding.pry
-    #new_funds = @funds -= film.price
-    #values = [new_funds, @id]
-    #SqlRunner.run(sql ,values)
     ticket.save()
+    sql = "SELECT films.* FROM
+           films INNER JOIN screenings
+           ON films.id = screenings.film_id INNER JOIN tickets
+           ON screenings.id = tickets.screening_id WHERE customer_id = $1"
+    values = [@id]
+    films = SqlRunner.run(sql ,values)
+    film = films.map { |film| Film.new(film) }
+    @funds -= film[0].price
+    update()
   end
 
   def ticket_count()
